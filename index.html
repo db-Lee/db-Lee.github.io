@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dong Bok Lee</title>
+<meta name="description" content="Dong Bok Lee, Ph.D. student in Artificial Intelligence at KAIST, advised by Sung Ju Hwang. Research on reward models, test-time scaling, knowledge distillation, and efficient machine learning.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+  :root {
+    --bg: #fbfaf6;
+    --text: #23262b;
+    --muted: #5c6168;
+    --faint: #6e737a;
+    --rule: #e5e1d6;
+    --tag: #f1efe8;
+    --accent: #3d5a80;
+    --accent-soft: #e9edf2;
+    --serif: "Source Serif 4", "Source Serif Pro", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17191c;
+      --text: #e4e1da;
+      --muted: #a8acb2;
+      --faint: #8b9097;
+      --rule: #2e3136;
+      --tag: #22252a;
+      --accent: #a3b9d6;
+      --accent-soft: #232a33;
+    }
+    .photo { filter: brightness(0.92); }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 17.5px;
+    line-height: 1.65;
+    font-feature-settings: "kern", "liga", "onum";
+    text-rendering: optimizeLegibility;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5.5rem 1.5rem 4rem;
+  }
+
+  a { color: var(--accent); text-decoration: none; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--bg); padding: 0.3rem 0.6rem; z-index: 1; }
+
+  /* Header */
+  header.intro {
+    display: grid;
+    grid-template-columns: 1fr 132px;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 3.5rem;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 2.35rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+  }
+  .role { margin: 0; font-size: 1.1rem; }
+  .note { margin: 0.15rem 0 1.25rem; color: var(--muted); font-style: italic; }
+  .links { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.15rem 0; font-size: 0.97rem; }
+  .links li:not(:last-child)::after { content: "\00b7"; color: var(--faint); margin: 0 0.55rem; }
+  .photo {
+    width: 132px;
+    height: 165px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    display: block;
+    background: var(--tag);
+  }
+
+  /* Sections */
+  section { margin-top: 3.25rem; }
+  h2 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  p { margin: 0 0 1rem; }
+  .interests { color: var(--muted); }
+
+
+  /* Publications */
+  .pubhead { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem 1rem; margin-bottom: 0.5rem; }
+  .eq { color: var(--faint); font-size: 0.92rem; margin: 0; }
+
+  .year h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--faint);
+    margin: 2rem 0 0.5rem;
+    font-variant-numeric: lining-nums;
+  }
+  .year ol { list-style: none; margin: 0; padding: 0; }
+  .pub { margin: 0 0 1.4rem; }
+  .pub .title { margin: 0; font-weight: 600; line-height: 1.4; }
+  .pub .title a { color: var(--text); }
+  .pub .title a:hover { color: var(--accent); }
+  .pub .authors { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+  .pub .authors b { color: var(--text); font-weight: 600; }
+  .pub .meta { margin: 0.35rem 0 0; font-size: 0.9rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0; }
+  .venue {
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    background: var(--tag);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0 0.45rem;
+    margin-right: 0.75rem;
+    font-variant-numeric: lining-nums;
+    white-space: nowrap;
+  }
+  .meta a + a::before { content: "\00b7"; color: var(--faint); margin: 0 0.45rem; display: inline-block; }
+
+  /* Experience / Education */
+  .entries { list-style: none; margin: 0; padding: 0; }
+  .entries li { display: grid; grid-template-columns: 1fr auto; gap: 0 1.5rem; margin-bottom: 1.1rem; }
+  .entries .what { font-weight: 600; }
+  .entries .when { color: var(--faint); font-size: 0.93rem; white-space: nowrap; font-variant-numeric: tabular-nums lining-nums; }
+  .entries .detail { grid-column: 1 / -1; color: var(--muted); font-size: 0.95rem; }
+
+  footer { margin-top: 4.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--faint); font-size: 0.88rem; }
+  footer p { margin: 0; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16.5px; }
+    main { padding: 3rem 1.25rem 3rem; }
+    header.intro { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .photo { grid-row: 1; width: 104px; height: 130px; }
+    h1 { font-size: 2rem; }
+    .entries li { grid-template-columns: 1fr; }
+    .entries .when { white-space: normal; }
+  }
+  @media print {
+    body { font-size: 11pt; background: #fff; color: #000; }
+    main { padding: 0; }
+    .skip { display: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+<main id="content">
+
+<header class="intro">
+  <div>
+    <h1>Dong Bok Lee</h1>
+    <p class="role">Ph.D. Student, KAIST AI</p>
+    <p class="note">Currently a research intern at Meta Superintelligence Labs</p>
+    <ul class="links" aria-label="Contact and profiles">
+      <li><a href="mailto:markhi@kaist.ac.kr">Email</a></li>
+      <li><a href="https://scholar.google.com/citations?user=EEJFwaoAAAAJ">Google Scholar</a></li>
+      <li><a href="https://github.com/db-Lee">GitHub</a></li>
+      <li><a href="https://openreview.net/profile?id=~Dong_Bok_Lee1">OpenReview</a></li>
+      <li><a href="https://dblp.org/pid/266/3004.html">DBLP</a></li>
+      <li><a href="https://db-lee.github.io/online-cv/">CV</a></li>
+    </ul>
+  </div>
+  <img class="photo" src="photo.jpg" alt="Portrait of Dong Bok Lee" width="132" height="165">
+</header>
+
+<section id="about" aria-labelledby="about-h">
+  <h2 id="about-h">About</h2>
+  <p>I am a Ph.D. student in Artificial Intelligence at KAIST, advised by <a href="http://www.sungjuhwang.com/">Sung Ju Hwang</a>, where I also received my M.S. My research aims to make machine learning models more reliable and more efficient to train and deploy, with a recent focus on large language models after pre-training: reward models for test-time scaling, knowledge distillation, and safety guard models.</p>
+  <p>Earlier, I worked on data- and compute-efficient learning more broadly, including meta-learning, dataset distillation, cost-sensitive Bayesian optimization for hyperparameter tuning, and prior-data fitted networks for learning-curve and scaling-law extrapolation. I have been a research intern at Microsoft Research Asia and Meta Superintelligence Labs.</p>
+  <p class="interests"><em>Interests:</em> reward models and test-time scaling &middot; knowledge distillation &middot; AI safety &middot; meta-learning &middot; hyperparameter optimization &middot; dataset distillation</p>
+</section>
+
+<section id="experience" aria-labelledby="exp-h">
+  <h2 id="exp-h">Experience</h2>
+  <ul class="entries">
+    <li><span class="what">Research Intern, Meta Superintelligence Labs</span><span class="when">Jun 2026 &ndash; Nov 2026</span><span class="detail">Hosted by <a href="http://hayeonlee.github.io/">Hayeon Lee</a> and Alex Min.</span></li>
+    <li><span class="what">Research Intern, Microsoft Research Asia</span><span class="when">Jul 2025 &ndash; Dec 2025</span><span class="detail">Hosted by <a href="https://www.microsoft.com/en-us/research/people/lesong/">Lei Song</a> and <a href="https://www.microsoft.com/en-us/research/people/jiabia/">Jiang Bian</a>. Reward models for multi-domain test-time scaling (TMLR 2026).</span></li>
+  </ul>
+</section>
+
+<section id="education" aria-labelledby="edu-h">
+  <h2 id="edu-h">Education</h2>
+  <ul class="entries">
+    <li><span class="what">Ph.D. in Artificial Intelligence, KAIST</span><span class="when">2021 &ndash; present</span><span class="detail">Advisor: <a href="http://www.sungjuhwang.com/">Sung Ju Hwang</a></span></li>
+    <li><span class="what">M.S. in Artificial Intelligence, KAIST</span><span class="when">2019 &ndash; 2021</span><span class="detail">Advisor: <a href="http://www.sungjuhwang.com/">Sung Ju Hwang</a></span></li>
+    <li><span class="what">B.S. in Computer Science, Korea University</span><span class="when">2012 &ndash; 2018</span></li>
+  </ul>
+</section>
+
+<section id="publications" aria-labelledby="pub-h">
+  <h2 id="pub-h">Publications</h2>
+  <div class="pubhead">
+    <p class="eq">* equal contribution</p>
+  </div>
+  <div class="pubs">
+    <div class="year">
+      <h3>2026</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=PgouBhL7IR">Rethinking Reward Models for Multi-Domain Test-Time Scaling</a></p>
+          <p class="authors"><b>Dong Bok Lee</b>*, Seanie Lee*, Sangwoo Park, Minki Kang, Jinheon Baek, Dongki Kim, Dominik Wagner, Jiongdao Jin, Heejun Lee, Tobias Bocklet, Jinyu Wang, Jingjing Fu, Sung Ju Hwang, Jiang Bian, Lei Song</p>
+          <p class="meta"><span class="venue">TMLR 2026</span><a href="https://openreview.net/forum?id=PgouBhL7IR">Paper</a><a href="https://arxiv.org/abs/2510.00492">arXiv</a><a href="https://github.com/db-Lee/Multi-RM">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/2505.07675">Simple yet Effective Semi-supervised Knowledge Distillation from Vision-Language Models via Dual-Head Optimization</a></p>
+          <p class="authors">Seongjae Kang*, <b>Dong Bok Lee</b>*, Hyungjoon Jang, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">NeurIPS 2026</span><a href="https://arxiv.org/abs/2505.07675">Paper</a><a href="https://github.com/erjui/DHO">Code</a><a href="https://dual-head-optimization.github.io/">Project</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/2602.03358">GFlowPO: Generative Flow Network as a Language Model Prompt Optimizer</a></p>
+          <p class="authors">Junmo Cho*, Suhan Kim*, Sangjune An*, Minsu Kim, <b>Dong Bok Lee</b>, Heejun Lee, Sung Ju Hwang, Hae Beom Lee</p>
+          <p class="meta"><span class="venue">arXiv 2026</span><a href="https://arxiv.org/abs/2602.03358">Paper</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2025</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/2510.00428">Automated Structured Radiology Report Generation with Rich Clinical Context</a></p>
+          <p class="authors">Seongjae Kang*, <b>Dong Bok Lee</b>*, Juho Jung, Dongseop Kim, Won Hwa Kim, Sunghoon Joo</p>
+          <p class="meta"><span class="venue">arXiv 2025</span><a href="https://arxiv.org/abs/2510.00428">Paper</a><a href="https://contextualized-srrg.github.io/">Project</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/2506.00910">PCoreSet: Effective Active Learning through Knowledge Distillation from Vision-Language Models</a></p>
+          <p class="authors">Seongjae Kang*, <b>Dong Bok Lee</b>*, Hyungjoon Jang, Dongseop Kim, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">arXiv 2025</span><a href="https://arxiv.org/abs/2506.00910">Paper</a><a href="https://github.com/erjui/PCoreSet">Code</a><a href="https://pcoreset.github.io/">Project</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=Qq19n9LZ97">FedSVD: Adaptive Orthogonalization for Private Federated Learning with LoRA</a></p>
+          <p class="authors">Seanie Lee*, Sangwoo Park*, <b>Dong Bok Lee</b>*, Dominik Wagner, Haebin Seong, Tobias Bocklet, Juho Lee, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">NeurIPS 2025</span><a href="https://openreview.net/forum?id=Qq19n9LZ97">Paper</a><a href="https://arxiv.org/abs/2505.12805">arXiv</a><a href="https://github.com/seanie12/fed-svd">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=ZUb4JpNoJe">Cost-Sensitive Freeze-thaw Bayesian Optimization for Efficient Hyperparameter Tuning</a></p>
+          <p class="authors"><b>Dong Bok Lee</b>, Aoxuan Silvia Zhang*, Byungjoo Kim*, Junhyeon Park*, Steven Adriaensen, Juho Lee, Sung Ju Hwang, Hae Beom Lee</p>
+          <p class="meta"><span class="venue">NeurIPS 2025</span><a href="https://openreview.net/forum?id=ZUb4JpNoJe">Paper</a><a href="https://arxiv.org/abs/2510.21379">arXiv</a><a href="https://github.com/db-Lee/CFBO">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://proceedings.mlr.press/v267/lee25q.html">Bayesian Neural Scaling Law Extrapolation with Prior-Data Fitted Networks</a></p>
+          <p class="authors">Dongwoo Lee*, <b>Dong Bok Lee</b>*, Steven Adriaensen, Juho Lee, Sung Ju Hwang, Frank Hutter, Seon Joo Kim, Hae Beom Lee</p>
+          <p class="meta"><span class="venue">ICML 2025</span><a href="https://proceedings.mlr.press/v267/lee25q.html">Paper</a><a href="https://arxiv.org/abs/2505.23032">arXiv</a><a href="https://github.com/DongWooLee-Eli/nslpfn">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://aclanthology.org/2025.findings-acl.105/">SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models</a></p>
+          <p class="authors">Seanie Lee*, <b>Dong Bok Lee</b>*, Dominik Wagner, Minki Kang, Haebin Seong, Tobias Bocklet, Juho Lee, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">Findings of ACL 2025</span><a href="https://aclanthology.org/2025.findings-acl.105/">Paper</a><a href="https://arxiv.org/abs/2502.12464">arXiv</a><a href="https://github.com/seanie12/safe-route">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=uGJxl2odR0">Dimension Agnostic Neural Processes</a></p>
+          <p class="authors">Hyungi Lee, Chaeyun Jang, <b>Dong Bok Lee</b>, Juho Lee</p>
+          <p class="meta"><span class="venue">ICLR 2025</span><a href="https://openreview.net/forum?id=uGJxl2odR0">Paper</a><a href="https://arxiv.org/abs/2502.20661">arXiv</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=y3zswp3gek">HarmAug: Effective Data Augmentation for Knowledge Distillation of Safety Guard Models</a></p>
+          <p class="authors">Seanie Lee*, Haebin Seong*, <b>Dong Bok Lee</b>, Minki Kang, Xiaoyin Chen, Dominik Wagner, Yoshua Bengio, Juho Lee, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ICLR 2025</span><a href="https://openreview.net/forum?id=y3zswp3gek">Paper</a><a href="https://arxiv.org/abs/2410.01524">arXiv</a><a href="https://github.com/haebin-seong/HarmAug">Code</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2024</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=h57gkDO2Yg">Self-Supervised Dataset Distillation for Transfer Learning</a></p>
+          <p class="authors"><b>Dong Bok Lee</b>*, Seanie Lee*, Joonho Ko, Kenji Kawaguchi, Juho Lee, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ICLR 2024</span><a href="https://openreview.net/forum?id=h57gkDO2Yg">Paper</a><a href="https://arxiv.org/abs/2310.06511">arXiv</a><a href="https://github.com/db-Lee/selfsup_dd">Code</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2023</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=kIAx30hYi_p">Self-Supervised Set Representation Learning for Unsupervised Meta-Learning</a></p>
+          <p class="authors"><b>Dong Bok Lee</b>*, Seanie Lee*, Kenji Kawaguchi, Yunji Kim, Jihwan Bang, Jung-Woo Ha, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ICLR 2023</span><a href="https://openreview.net/forum?id=kIAx30hYi_p">Paper</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2022</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/2210.10485">Learning Transferable Adversarial Robust Representations via Multi-view Consistency</a></p>
+          <p class="authors">Minseon Kim*, Hyeonjeong Ha*, <b>Dong Bok Lee</b>, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">NeurIPS 2022 ML Safety Workshop</span><a href="https://arxiv.org/abs/2210.10485">Paper</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/2208.10494">Dataset Condensation with Latent Space Knowledge Factorization and Sharing</a></p>
+          <p class="authors">Hae Beom Lee*, <b>Dong Bok Lee</b>*, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">arXiv 2022</span><a href="https://arxiv.org/abs/2208.10494">Paper</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2021</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://proceedings.mlr.press/v139/min21b.html">Meta-StyleSpeech: Multi-Speaker Adaptive Text-to-Speech Generation</a></p>
+          <p class="authors">Dongchan Min, <b>Dong Bok Lee</b>, Eunho Yang, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ICML 2021</span><a href="https://proceedings.mlr.press/v139/min21b.html">Paper</a><a href="https://arxiv.org/abs/2106.03153">arXiv</a><a href="https://github.com/KevinMIN95/StyleSpeech">Code</a><a href="https://stylespeech.github.io/">Demo</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=wS0UFjsNYjn">Meta-GMVAE: Mixture of Gaussian VAE for Unsupervised Meta-Learning</a></p>
+          <p class="authors"><b>Dong Bok Lee</b>, Dongchan Min, Seanie Lee, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ICLR 2021 &middot; Spotlight</span><a href="https://openreview.net/forum?id=wS0UFjsNYjn">Paper</a><a href="https://github.com/db-Lee/Meta-GMVAE">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://openreview.net/forum?id=Wga_hrCa3P3">Contrastive Learning with Adversarial Perturbations for Conditional Text Generation</a></p>
+          <p class="authors">Seanie Lee*, <b>Dong Bok Lee</b>*, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ICLR 2021</span><a href="https://openreview.net/forum?id=Wga_hrCa3P3">Paper</a><a href="https://arxiv.org/abs/2012.07280">arXiv</a><a href="https://github.com/seanie12/CLAPS">Code</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2020</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://proceedings.neurips.cc/paper/2020/hash/0663a4ddceacb40b095eda264a85f15c-Abstract.html">Learning to Extrapolate Knowledge: Transductive Few-shot Out-of-Graph Link Prediction</a></p>
+          <p class="authors">Jinheon Baek, <b>Dong Bok Lee</b>, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">NeurIPS 2020</span><a href="https://proceedings.neurips.cc/paper/2020/hash/0663a4ddceacb40b095eda264a85f15c-Abstract.html">Paper</a><a href="https://arxiv.org/abs/2006.06648">arXiv</a><a href="https://github.com/JinheonBaek/GEN">Code</a></p>
+        </li>
+        <li class="pub">
+          <p class="title"><a href="https://aclanthology.org/2020.acl-main.20/">Generating Diverse and Consistent QA pairs from Contexts with Information-Maximizing Hierarchical Conditional VAEs</a></p>
+          <p class="authors"><b>Dong Bok Lee</b>*, Seanie Lee*, Woo Tae Jeong, Donghwan Kim, Sung Ju Hwang</p>
+          <p class="meta"><span class="venue">ACL 2020</span><a href="https://aclanthology.org/2020.acl-main.20/">Paper</a><a href="https://arxiv.org/abs/2005.13837">arXiv</a><a href="https://github.com/seanie12/Info-HCVAE">Code</a></p>
+        </li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2018</h3>
+      <ol>
+        <li class="pub">
+          <p class="title"><a href="https://arxiv.org/abs/1808.07383">Dynamic Self-Attention: Computing Attention over Words Dynamically for Sentence Embedding</a></p>
+          <p class="authors">Deunsol Yoon*, <b>Dongbok Lee</b>*, SangKeun Lee</p>
+          <p class="meta"><span class="venue">arXiv 2018</span><a href="https://arxiv.org/abs/1808.07383">Paper</a></p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Last updated: November 2026 &middot; <a href="https://orcid.org/0009-0003-4011-1039">ORCID</a> &middot; <a href="https://www.semanticscholar.org/author/2115673552">Semantic Scholar</a></p>
+</footer>
+
+</main>
+</body>
+</html>
